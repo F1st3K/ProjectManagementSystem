@@ -8,7 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c60448e-fa17-42da-adb6-4ee64d777a8c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/UseCases/Authentication/Commands/Register/RegisterCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/UseCases/Authentication/Commands/Register/RegisterCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/ProjectManagementSystem.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/ProjectManagementSystem.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/ProjectManagementSystem.External.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/ProjectManagementSystem.External.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737147096956</updated>
-      <workItem from="1737147098669" duration="12401000" />
+      <workItem from="1737147098669" duration="16711000" />
     </task>
     <servers />
   </component>

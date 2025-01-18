@@ -1,3 +1,25 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Microsoft.Extensions.Hosting;
+using ProjectManagementSystem.Core;
+using ProjectManagementSystem.External;
 
-Console.WriteLine("Hello, World!");
+var host = Host.CreateDefaultBuilder(args).ConfigureServices((hostContext, services) =>
+{
+    services.AddExternalPresentation()
+        .AddCore()
+        .AddExternalInfrastructure();
+}).Build();
+
+while (true)
+{
+    Console.WriteLine("Enter command (type 'help' for available commands):");
+    var command = Console.ReadLine();
+
+    if (command?.ToLower() == "exit")
+    {
+        Console.WriteLine("Exiting application...");
+        break;
+    }
+
+    // Обрабатываем команду
+    //commandRouter.ExecuteCommand(command);
+}
