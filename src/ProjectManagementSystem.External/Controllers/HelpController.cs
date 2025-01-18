@@ -1,6 +1,6 @@
 namespace ProjectManagementSystem.External.Controllers;
 
-public class HelpController : ICommandController
+public class HelpController : BaseCommandController
 {
     public void Command(params string[] args)
     {

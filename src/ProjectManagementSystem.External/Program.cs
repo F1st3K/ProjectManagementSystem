@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ProjectManagementSystem.Core;
+using ProjectManagementSystem.Core.Contexts;
 using ProjectManagementSystem.External;
 
 var serviceCollection = new ServiceCollection();
@@ -13,17 +14,27 @@ var serviceCollection = new ServiceCollection();
 var services = serviceCollection.BuildServiceProvider();
 var commandRouter = new CommandRouter(services);
 
+
 while (true)
 {
-    Console.WriteLine("Enter command:");
+    var userContext = services.GetService<ICurrentUserContext>();
+    if (userContext?.User == null)
+    {
+        Console.WriteLine(">>> To work you need to log in:");
+        commandRouter.TryExecuteCommand("auth", "login");
+        continue;
+    }
+    
+    Console.Write("> ");
 
     if (Console.ReadLine() is not {} command) continue;
     
     if (command.Equals("exit", StringComparison.CurrentCultureIgnoreCase))
     {
-        Console.WriteLine("Exiting application...");
+        Console.WriteLine(">>> Exiting application...");
         break;
     }
 
-    commandRouter.ExecuteCommand(command.Split(" ")[0], command.Split(" ").Skip(1).ToArray());
+    if (commandRouter.TryExecuteCommand(command.Split(" ").First(), command.Split(" ").Skip(1).ToArray()) == false)
+        Console.WriteLine(">>> Unknown command. Type 'help' for available commands.");
 }

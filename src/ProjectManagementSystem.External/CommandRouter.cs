@@ -13,20 +13,22 @@ public class CommandRouter
         MapCommands(serviceProvider);
     }
 
-    public void ExecuteCommand(string cmd, params string[] args)
+    public bool TryExecuteCommand(string cmd, params string[] args)
     {
+        var isExecuted = false;
+        
         if (args.Length > 0 && _commands.ContainsKey($"{cmd} {args[0]}"))
         {
             _commands[$"{cmd} {args[0]}"].Invoke(args.Skip(1).ToArray());
+            isExecuted = true;
         }
         else if (_commands.TryGetValue(cmd, out var command))
         {
             command.Invoke(args);
+            isExecuted = true;
         }
-        else
-        {
-            Console.WriteLine("Unknown command. Type 'help' for available commands.");
-        }
+        
+        return isExecuted;
     }
 
     private void MapCommands(IServiceProvider services)
@@ -43,7 +45,7 @@ public class CommandRouter
               // Название подкоманды будет соответствовать имени метода в нижнем регистре без слова command 
               var subcommandName =  subcommand.Name.ToLower().Replace("command", "");
               var controllerType = controller.GetType();
-              var alias = commandName + (string.IsNullOrWhiteSpace(subcommandName) ? "" : $" {subcommand}");
+              var alias = commandName + (string.IsNullOrWhiteSpace(subcommandName) ? "" : $" {subcommandName}");
               
               RegisterCommand(services, alias, controllerType, subcommand);
           }
