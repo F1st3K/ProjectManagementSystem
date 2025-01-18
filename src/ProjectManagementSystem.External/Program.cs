@@ -9,17 +9,20 @@ var host = Host.CreateDefaultBuilder(args).ConfigureServices((hostContext, servi
         .AddExternalInfrastructure();
 }).Build();
 
+var commandRouter = new CommandRouter();
+commandRouter.MapCommands(host.Services);
+
 while (true)
 {
-    Console.WriteLine("Enter command (type 'help' for available commands):");
-    var command = Console.ReadLine();
+    Console.WriteLine("Enter command:");
 
-    if (command?.ToLower() == "exit")
+    if (Console.ReadLine() is not {} command) continue;
+    
+    if (command.Equals("exit", StringComparison.CurrentCultureIgnoreCase))
     {
         Console.WriteLine("Exiting application...");
         break;
     }
 
-    // Обрабатываем команду
-    //commandRouter.ExecuteCommand(command);
+    commandRouter.ExecuteCommand(command.Split(" ")[0], command.Split(" ").Skip(1).ToArray());
 }
