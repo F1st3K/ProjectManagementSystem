@@ -9,13 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6c60448e-fa17-42da-adb6-4ee64d777a8c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectManagementSystem.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectManagementSystem.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/Contexts/ICurrentUserContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/Contexts/ICurrentUserContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/CommandRouter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/CommandRouter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/HelpController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/HelpController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/DependencyInjection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/ProjectManagementSystem.External.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/ProjectManagementSystem.External.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/AuthController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1737147096956</updated>
       <workItem from="1737147098669" duration="23373000" />
-      <workItem from="1737208255137" duration="27666000" />
+      <workItem from="1737208255137" duration="29559000" />
     </task>
     <servers />
   </component>
