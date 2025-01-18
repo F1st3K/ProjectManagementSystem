@@ -8,7 +8,28 @@ public class CommandRouter
 {
     private readonly Dictionary<string, Action<string[]>> _commands = new();
 
-    public void MapCommands(IServiceProvider services)
+    public CommandRouter(IServiceProvider serviceProvider)
+    {
+        MapCommands(serviceProvider);
+    }
+
+    public void ExecuteCommand(string cmd, params string[] args)
+    {
+        if (args.Length > 0 && _commands.ContainsKey($"{cmd} {args[0]}"))
+        {
+            _commands[$"{cmd} {args[0]}"].Invoke(args.Skip(1).ToArray());
+        }
+        else if (_commands.TryGetValue(cmd, out var command))
+        {
+            command.Invoke(args);
+        }
+        else
+        {
+            Console.WriteLine("Unknown command. Type 'help' for available commands.");
+        }
+    }
+
+    private void MapCommands(IServiceProvider services)
     {
         var controllerTypes = services.GetServices<ICommandController>();
 
@@ -52,21 +73,5 @@ public class CommandRouter
                 throw ex.InnerException!;
             }
         };
-    }
-
-    public void ExecuteCommand(string cmd, params string[] args)
-    {
-        if (args.Length > 0 && _commands.ContainsKey($"{cmd} {args[0]}"))
-        {
-            _commands[$"{cmd} {args[0]}"].Invoke(args.Skip(1).ToArray());
-        }
-        else if (_commands.TryGetValue(cmd, out var command))
-        {
-            command.Invoke(args);
-        }
-        else
-        {
-            Console.WriteLine("Unknown command. Type 'help' for available commands.");
-        }
     }
 }

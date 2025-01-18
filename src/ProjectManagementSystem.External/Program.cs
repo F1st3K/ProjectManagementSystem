@@ -1,16 +1,17 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
 using ProjectManagementSystem.Core;
 using ProjectManagementSystem.External;
 
-var host = Host.CreateDefaultBuilder(args).ConfigureServices((hostContext, services) =>
+var serviceCollection = new ServiceCollection();
 {
-    services.AddExternalPresentation()
+    serviceCollection
+        .AddExternalPresentation()
         .AddCore()
         .AddExternalInfrastructure();
-}).Build();
+}
 
-var commandRouter = new CommandRouter();
-commandRouter.MapCommands(host.Services);
+var services = serviceCollection.BuildServiceProvider();
+var commandRouter = new CommandRouter(services);
 
 while (true)
 {
