@@ -1,18 +1,38 @@
 using ErrorOr;
 using MediatR;
+using ProjectManagementSystem.Core.Contexts;
 using ProjectManagementSystem.Core.Entities;
 using ProjectManagementSystem.Core.Repositories;
-using Task = System.Threading.Tasks.Task;
+using Task = ProjectManagementSystem.Core.Entities.Task;
 
 namespace ProjectManagementSystem.Core.UseCases.Tasks.Queries.GetTasksQuery;
 
-public class GetTasksQueryHandler(IProjectRepository projectRepository)
-    : IRequestHandler<GetTasksQuery, ErrorOr<List<Project>>>
+public class GetTasksQueryHandler(
+    ITaskRepository taskRepository,
+    IUserRepository userRepository,
+    IUserContext userContext)
+    : IRequestHandler<GetTasksQuery, ErrorOr<List<Task>>>
 {
-    public async Task<ErrorOr<List<Project>>> Handle(GetTasksQuery request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<List<Task>>> Handle(GetTasksQuery request, CancellationToken cancellationToken)
     {
-        await Task.CompletedTask;
+        await System.Threading.Tasks.Task.CompletedTask;
 
-        return projectRepository.GetProjects().ToList();
+        if (userContext.User is not { Role: UserRole.Manager }
+            && (request.UserId is null || request.UserId != userContext.User?.Id))
+            return Error.Forbidden("User.NotPermitted",
+                "You can only view your tasks.");
+        
+        var tasks = taskRepository.GetTasks();
+
+        if (request.UserId.HasValue)
+        {
+            if (userRepository.GetUser(request.UserId.Value) is not { } user)
+                return Error.NotFound("User.NotFound",
+                $"User with id {request.UserId} does not exist.");
+            
+            tasks = tasks.Where(t => t.AssignedUser?.Id == user.Id);
+        }
+
+        return tasks.ToList();
     }
 }

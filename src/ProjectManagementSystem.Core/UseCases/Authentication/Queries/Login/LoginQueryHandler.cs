@@ -18,6 +18,6 @@ public class LoginQueryHandler(IUserRepository userRepository) : IRequestHandler
                 ) is not {} user)
             return Error.Unauthorized("User.NotPermitted", "Invalid login or password.");
         
-        return new AuthResult(user.Role, user.Name ?? string.Empty);
+        return new AuthResult(user.Id, user.Role, user.Name ?? string.Empty);
     }
 }
