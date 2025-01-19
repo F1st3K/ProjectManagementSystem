@@ -7,5 +7,5 @@ public interface ITaskRepository
     public void CreateTask(Task task);
     public void UpdateTask(Task task);
     public IEnumerable<Task> GetTasks();
-    public Task GetTask(Guid taskId);
+    public Task? GetTask(Guid taskId);
 }

@@ -14,6 +14,7 @@ public static class DependencyInjection
         services.AddScoped<ICommandController, HelpController>();
         services.AddScoped<ICommandController, AuthController>();
         services.AddScoped<ICommandController, ProjectController>();
+        services.AddScoped<ICommandController, TaskController>();
         
         return services; }
     
@@ -22,6 +23,7 @@ public static class DependencyInjection
         services.AddSingleton<IUserContext, UserContext>();
         services.AddSingleton<IUserRepository, UserRepository>();
         services.AddSingleton<IProjectRepository, ProjectRepository>();
+        services.AddSingleton<ITaskRepository, TaskRepository>();
         
         return services;
     }
