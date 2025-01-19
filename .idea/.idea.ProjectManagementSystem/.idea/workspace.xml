@@ -9,7 +9,12 @@
   <component name="ChangeListManager">
     <list default="true" id="6c60448e-fa17-42da-adb6-4ee64d777a8c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/DependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/ProjectManagementSystem.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/ProjectManagementSystem.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/Repositories/IProjectRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/Repositories/IProjectRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/UseCases/Projects/Queries/GetProjectsQuery/TmpQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/UseCases/Projects/Queries/GetProjectsQuery/GetProjectsQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/UseCases/tmp/Queries/TmpQuery.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/UseCases/tmp/Queries/TmpQueryHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Repositories/ProjectRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Repositories/ProjectRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +91,7 @@
       <workItem from="1737147098669" duration="23373000" />
       <workItem from="1737208255137" duration="33016000" />
       <workItem from="1737244220215" duration="4063000" />
-      <workItem from="1737306633617" duration="4073000" />
+      <workItem from="1737306633617" duration="6759000" />
     </task>
     <servers />
   </component>

@@ -16,4 +16,9 @@ public class ProjectRepository : IProjectRepository
     {
         return _projects;
     }
+
+    public Project? GetProject(Guid projectId)
+    {
+        return _projects.FirstOrDefault(p => p.Id == projectId);
+    }
 }
