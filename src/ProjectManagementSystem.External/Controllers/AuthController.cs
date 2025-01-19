@@ -3,6 +3,7 @@ using ProjectManagementSystem.Core.Contexts;
 using ProjectManagementSystem.Core.Entities;
 using ProjectManagementSystem.Core.UseCases.Authentication.Commands.Register;
 using ProjectManagementSystem.Core.UseCases.Authentication.Queries.Login;
+using ProjectManagementSystem.External.Extensions;
 
 namespace ProjectManagementSystem.External.Controllers;
 
@@ -10,16 +11,14 @@ public class AuthController(ISender sender, ICurrentUserContext userContext) : B
 {
     public async void LoginCommand(params string[] args)
     {
-        Console.Write("Login: ");
-        var login = Console.ReadLine() ?? string.Empty;
-        Console.Write("Password: ");
-        var password = ReadPassword();
+        var login = args.ReadOrGet("Login", 0);
+        var password = args.ReadOrGet("Password", 1, Io.ReadPassword);
         var result = await sender.Send(new LoginQuery(login, password));
 
         result.Switch(r =>
         {
             userContext.User = r;
-            Console.WriteLine($"---[You have logged in as {r.Role} {r.Name}]---");
+            Io.WriteTitle($"You have logged in as {r.Role} {r.Name}");
         }, Problem);
     }
 
@@ -30,45 +29,14 @@ public class AuthController(ISender sender, ICurrentUserContext userContext) : B
 
     public async void RegisterCommand(params string[] args)
     {
-        Console.Write("Name: ");
-        var name = Console.ReadLine() ?? string.Empty;
-        Console.Write("Login: ");
-        var login = Console.ReadLine() ?? string.Empty;
-        Console.Write("Password: ");
-        var password = ReadPassword();
+        var name = args.ReadOrGet("Name", 0);
+        var login = args.ReadOrGet("Login", 1);
+        var password = args.ReadOrGet("Password", 2, Io.ReadPassword);
         var result = await sender.Send(new RegisterCommand(name, login, password));
 
         result.Switch(r =>
         {
-            Console.WriteLine($"---[You registered new {UserRole.Employee} {name}]---");
+            Io.WriteTitle($"You registered new {UserRole.Employee} {name}");
         }, Problem);
-    }
-
-    private string ReadPassword()
-    {
-        var password = string.Empty;
-        while (true)
-        { 
-            var key = Console.ReadKey(true);
-
-            if (key.Key == ConsoleKey.Enter)
-            {
-                Console.WriteLine();
-                break;
-            }
-            if (key.Key == ConsoleKey.Backspace && password.Length > 0)
-            {
-                    password = password.Remove(password.Length - 1);
-                    Console.Write("\b \b");
-            }
-            else
-            {
-                var character = key.KeyChar;
-                password += character;
-                Console.Write("*");
-            }
-        }
-
-        return password;
     }
 }
