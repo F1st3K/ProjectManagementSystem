@@ -9,7 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6c60448e-fa17-42da-adb6-4ee64d777a8c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/ProjectManagementSystem.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/ProjectManagementSystem.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/DependencyInjection.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,19 +42,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.ProjectManagementSystem.External.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.ProjectManagementSystem.External.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "develop",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="ProjectManagementSystem.External" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -86,7 +86,7 @@
       <workItem from="1737147098669" duration="23373000" />
       <workItem from="1737208255137" duration="33016000" />
       <workItem from="1737244220215" duration="4063000" />
-      <workItem from="1737306633617" duration="3125000" />
+      <workItem from="1737306633617" duration="4073000" />
     </task>
     <servers />
   </component>
