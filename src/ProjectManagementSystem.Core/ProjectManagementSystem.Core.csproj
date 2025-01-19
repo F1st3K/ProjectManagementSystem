@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="UseCases\Projects\Common\" />
-      <Folder Include="UseCases\Projects\Queries\GetProjectsQuery\" />
     </ItemGroup>
 
     <ItemGroup>
