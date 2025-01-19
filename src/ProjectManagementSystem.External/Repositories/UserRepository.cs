@@ -18,4 +18,9 @@ public class UserRepository : IUserRepository
     {
         return _users;
     }
+
+    public User? GetUser(Guid userId)
+    {
+        return _users.FirstOrDefault(u => u.Id == userId);
+    }
 }

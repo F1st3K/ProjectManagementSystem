@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="UseCases\Projects\Common\" />
-      <Folder Include="UseCases\Tasks\Commands\AssingTaskCommand\" />
     </ItemGroup>
 
     <ItemGroup>
