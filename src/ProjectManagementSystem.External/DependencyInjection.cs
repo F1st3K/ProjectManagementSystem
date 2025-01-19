@@ -18,7 +18,7 @@ public static class DependencyInjection
     
     public static IServiceCollection AddExternalInfrastructure(this IServiceCollection services)
     {
-        services.AddSingleton<ICurrentUserContext, CurrentUserContext>();
+        services.AddSingleton<IUserContext, UserContext>();
         services.AddSingleton<IUserRepository, UserRepository>();
         
         return services;

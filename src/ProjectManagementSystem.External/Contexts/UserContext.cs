@@ -3,7 +3,7 @@ using ProjectManagementSystem.Core.UseCases.Authentication.Common;
 
 namespace ProjectManagementSystem.External.Contexts;
 
-public class CurrentUserContext : ICurrentUserContext
+public class UserContext : IUserContext
 {
     public AuthResult? User { get; set; }
 }

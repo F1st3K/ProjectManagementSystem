@@ -7,7 +7,7 @@ using ProjectManagementSystem.External.Extensions;
 
 namespace ProjectManagementSystem.External.Controllers;
 
-public class AuthController(ISender sender, ICurrentUserContext userContext) : BaseCommandController
+public class AuthController(ISender sender, IUserContext userContext) : BaseCommandController
 {
     public async void LoginCommand(params string[] args)
     {

@@ -17,7 +17,7 @@ var commandRouter = new CommandRouter(services);
 
 while (true)
 {
-    var userContext = services.GetService<ICurrentUserContext>();
+    var userContext = services.GetService<IUserContext>();
     if (userContext?.User == null)
     {
         Console.WriteLine(">>> To work you need to log in:");

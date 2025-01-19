@@ -7,13 +7,13 @@ using Task = System.Threading.Tasks.Task;
 
 namespace ProjectManagementSystem.Core.UseCases.Authentication.Commands.Register;
 
-public class RegisterCommandHandler(IUserRepository userRepository, ICurrentUserContext currentUserContext) : IRequestHandler<RegisterCommand, ErrorOr<Created>>
+public class RegisterCommandHandler(IUserRepository userRepository, IUserContext userContext) : IRequestHandler<RegisterCommand, ErrorOr<Created>>
 {
     public async Task<ErrorOr<Created>> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
         
-        if (currentUserContext.User.Role != UserRole.Manager)
+        if (userContext.User is not { Role: UserRole.Manager })
             return Error.Forbidden("User.NotPermitted",
                 "You do not have permission to access register employee.");
         

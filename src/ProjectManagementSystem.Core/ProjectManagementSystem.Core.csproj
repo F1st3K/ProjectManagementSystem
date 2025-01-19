@@ -7,9 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="UseCases\tmp\Commands\" />
-      <Folder Include="UseCases\tmp\Common\" />
-      <Folder Include="UseCases\tmp\Queries\" />
+      <Folder Include="UseCases\Projects\Common\" />
+      <Folder Include="UseCases\Projects\Queries\GetProjectsQuery\" />
     </ItemGroup>
 
     <ItemGroup>
