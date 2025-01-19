@@ -24,12 +24,12 @@ public static class Io
     
     public static void WriteBlock(string title, string data)
     {
-        var main = $"┌--[{title}]";
+        var main = $"┍--[{title}]";
             
         Console.WriteLine(
-            main.PadRight(119, '-') + '┐'
+            main.PadRight(119, '-') + '┑'
             + "\n" + data
-            + "\n└".PadRight(120, '-') + '┘');
+            + "\n┕".PadRight(120, '-') + '┙');
     }
     
     public static string ReadPassword()

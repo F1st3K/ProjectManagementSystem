@@ -1,4 +1,5 @@
 using ErrorOr;
+using Newtonsoft.Json;
 using ProjectManagementSystem.External.Contexts;
 using ProjectManagementSystem.External.Extensions;
 
@@ -12,6 +13,6 @@ public abstract class BaseCommandController() : ICommandController
 
         Io.WriteBlock("Command returned errors",
             $"Error: {firstError.Code} - {firstError.Description}\n" +
-            $"Stack errors:\n    {string.Join(",\n    ", errors.Select(e => e.Code))}.");
+            $"Stack errors: {JsonConvert.SerializeObject(errors.Select(e => e.Code), Formatting.Indented)}");
     }
 }
