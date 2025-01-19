@@ -11,9 +11,9 @@ public class AssignTaskCommandHandler(
     IUserContext userContext,
     ITaskRepository taskRepository,
     IUserRepository userRepository)
-    : IRequestHandler<AssignTaskCommand, ErrorOr<Created>>
+    : IRequestHandler<AssignTaskCommand, ErrorOr<Updated>>
 {
-    public async Task<ErrorOr<Created>> Handle(AssignTaskCommand request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<Updated>> Handle(AssignTaskCommand request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
 
@@ -36,6 +36,6 @@ public class AssignTaskCommandHandler(
         task.AssignedUser = user;
         taskRepository.UpdateTask(task);
         
-        return Result.Created;
+        return Result.Updated;
     }
 }

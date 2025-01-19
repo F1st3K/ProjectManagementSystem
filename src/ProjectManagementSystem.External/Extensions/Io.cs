@@ -4,15 +4,28 @@ public static class Io
 {
     public static string ReadOrGet(this string[] args, string flag, int index, Func<string>? getDefault = null)
     {
-        Console.Write($"{flag}: ");
-
-        if (args.Length > index)
-        {
-            Console.WriteLine(args[index]);
-            return args[index];
-        }
+        if (args.TryGet(flag, index) is { } arg 
+            && string.IsNullOrWhiteSpace(arg) == false)
+            return arg;
         
         return getDefault?.Invoke() ?? Console.ReadLine() ?? string.Empty;
+    }
+    
+    public static string TryGet(this string[] args, string flag, int index)
+    {
+        Console.Write($"{flag}: ");
+
+        if (args.Length <= index)
+        {
+            Console.WriteLine();
+            return string.Empty;
+        }
+        
+        if (string.IsNullOrWhiteSpace(args[index]) == false)
+            Console.WriteLine(args[index]);
+        
+        return args[index];
+
     }
 
     public static void WriteTitle(params string[] titles)
