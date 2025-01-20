@@ -15,6 +15,7 @@ public static class DependencyInjection
         services.AddScoped<ICommandController, AuthController>();
         services.AddScoped<ICommandController, ProjectController>();
         services.AddScoped<ICommandController, TaskController>();
+        services.AddScoped<ICommandController, UserController>();
         
         return services; }
     
