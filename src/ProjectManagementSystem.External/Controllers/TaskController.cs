@@ -3,9 +3,11 @@ using MediatR;
 using Newtonsoft.Json;
 using ProjectManagementSystem.Core.Contexts;
 using ProjectManagementSystem.Core.UseCases.Tasks.Commands.AssignTaskCommand;
+using ProjectManagementSystem.Core.UseCases.Tasks.Commands.ChangeTaskStatusCommand;
 using ProjectManagementSystem.Core.UseCases.Tasks.Commands.CreateTaskCommand;
 using ProjectManagementSystem.Core.UseCases.Tasks.Queries.GetTasksQuery;
 using ProjectManagementSystem.External.Extensions;
+using TaskStatus = ProjectManagementSystem.Core.Entities.TaskStatus;
 
 namespace ProjectManagementSystem.External.Controllers;
 
@@ -72,7 +74,30 @@ public class TaskController(ISender sender, IUserContext userContext) : BaseComm
         var result = await sender.Send(new AssignTaskCommand(taskGuid, userGuid));
         
         result.Switch(r =>
-            Io.WriteTitle($"Task {taskId} assigned to {userId}"),
+            Io.WriteTitle($"Task {taskGuid} assigned to {userGuid}"),
+        Problem);
+    }
+    
+    public async void ChangeCommand(params string[] args)
+    {
+        var taskId = args.TryGet("TaskId", 0);
+        if (Guid.TryParse(taskId, out var taskGuid) == false)
+        {
+            Problem([Error.Validation("Guid.Invalid", $"Invalid TaskGuid[0]: {taskId}")]);
+            return;
+        }
+        
+        var status = args.TryGet("TaskStatus", 1);
+        if (Enum.TryParse<TaskStatus>(status, true, out var taskStatus) == false)
+        {
+            Problem([Error.Validation("TaskStatus.Invalid", $"Invalid TaskStatus[1]: {status}")]);
+            return;
+        }
+        
+        var result = await sender.Send(new ChangeTaskStatusCommand(taskGuid, taskStatus));
+        
+        result.Switch(r =>
+            Io.WriteTitle($"Task {taskId} assigned to {taskStatus}"),
         Problem);
     }
 }
