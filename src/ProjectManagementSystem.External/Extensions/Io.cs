@@ -2,30 +2,25 @@ namespace ProjectManagementSystem.External.Extensions;
 
 public static class Io
 {
+    public static T? TryParseFrom<T>(this string arg, IEnumerable<T> list, Func<T, string> convert)
+    {
+        return list.FirstOrDefault(i => convert(i).StartsWith(arg, StringComparison.OrdinalIgnoreCase));
+    }
+    
     public static string ReadOrGet(this string[] args, string flag, int index, Func<string>? getDefault = null)
     {
-        if (args.TryGet(flag, index) is { } arg 
+        if (args.TryGet(index) is { } arg 
             && string.IsNullOrWhiteSpace(arg) == false)
             return arg;
+        
+        Console.Write($"{flag}: ");
         
         return getDefault?.Invoke() ?? Console.ReadLine() ?? string.Empty;
     }
     
-    public static string TryGet(this string[] args, string flag, int index)
+    public static string TryGet(this string[] args, int index)
     {
-        Console.Write($"{flag}: ");
-
-        if (args.Length <= index)
-        {
-            Console.WriteLine();
-            return string.Empty;
-        }
-        
-        if (string.IsNullOrWhiteSpace(args[index]) == false)
-            Console.WriteLine(args[index]);
-        
-        return args[index];
-
+        return args.Length <= index ? string.Empty : args[index];
     }
 
     public static void WriteTitle(params string[] titles)

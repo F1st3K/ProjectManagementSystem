@@ -2,11 +2,15 @@ using ErrorOr;
 using MediatR;
 using Newtonsoft.Json;
 using ProjectManagementSystem.Core.Contexts;
+using ProjectManagementSystem.Core.Entities;
+using ProjectManagementSystem.Core.UseCases.Projects.Queries.GetProjectsQuery;
 using ProjectManagementSystem.Core.UseCases.Tasks.Commands.AssignTaskCommand;
 using ProjectManagementSystem.Core.UseCases.Tasks.Commands.ChangeTaskStatusCommand;
 using ProjectManagementSystem.Core.UseCases.Tasks.Commands.CreateTaskCommand;
 using ProjectManagementSystem.Core.UseCases.Tasks.Queries.GetTasksQuery;
+using ProjectManagementSystem.Core.UseCases.Users.Queries.GetUsersQuery;
 using ProjectManagementSystem.External.Extensions;
+using Guid = System.Guid;
 using TaskStatus = ProjectManagementSystem.Core.Entities.TaskStatus;
 
 namespace ProjectManagementSystem.External.Controllers;
@@ -15,21 +19,22 @@ public class TaskController(ISender sender, IUserContext userContext) : BaseComm
 {
     public async void ListCommand(params string[] args)
     {
-        var userId = args.TryGet("UserId", 0);
+        var userId = args.ReadOrGet("UserId", 0);
+        Guid? guid = null;
+        
         if (userId == "my")
-            userId = userContext.User?.Id.ToString();
-        
-        Guid? guid;
-        if (string.IsNullOrWhiteSpace(userId))
-            guid = null;
-        else if (Guid.TryParse(userId, out var pguid))
-            guid = pguid;
-        else
+            guid = userContext.User?.Id;
+        else if (userId != "all" && string.IsNullOrWhiteSpace(userId) == false)
         {
-            Problem([Error.Validation("Guid.Invalid", $"Invalid guid: {userId}")]);
-            return;
+            var resultId = await GetFromStartString(userId, new GetUsersQuery());
+            if (resultId.IsError)
+            {
+                Problem(resultId.Errors);
+                return;
+            }
+            guid = resultId.Value.Id;
         }
-        
+
         var result = await sender.Send(new GetTasksQuery(guid));
         
         result.Switch(r =>
@@ -39,65 +44,80 @@ public class TaskController(ISender sender, IUserContext userContext) : BaseComm
 
     public async void CreateCommand(params string[] args)
     {
-        var projectId = args.TryGet("ProjectId", 0);
-        if (Guid.TryParse(projectId, out var projectGuid) == false)
+        var projectId = args.ReadOrGet("ProjectId", 0);
+        if (await GetFromStartString(projectId, new GetProjectsQuery()) is var projectResult 
+            && projectResult.IsError)
         {
-            Problem([Error.Validation("Guid.Invalid", $"Invalid ProjectGuid[0]: {projectId}")]);
+            Problem(projectResult.Errors);
             return;
         }
+        
         var title = args.ReadOrGet("Title", 1);
         var description = args.ReadOrGet("Description", 2);
         
-        var result = await sender.Send(new CreateTaskCommand(title, description, projectGuid));
+        var result = await sender.Send(new CreateTaskCommand(title, description, projectResult.Value.Id));
         
         result.Switch(r =>
-            Io.WriteTitle(title, "Task created"),
+            Io.WriteTitle(title, "Task created in project", projectResult.Value.Name!),
         Problem);
     }
 
     public async void AssignCommand(params string[] args)
     {
-        var taskId = args.TryGet("TaskId", 0);
-        if (Guid.TryParse(taskId, out var taskGuid) == false)
+        var taskId = args.ReadOrGet("TaskId", 0);
+        if (await GetFromStartString(taskId, new GetTasksQuery()) is var taskResult 
+            && taskResult.IsError)
         {
-            Problem([Error.Validation("Guid.Invalid", $"Invalid TaskGuid[0]: {taskId}")]);
+            Problem(taskResult.Errors);
             return;
         }
         
-        var userId = args.TryGet("UserId", 1);
-        if (Guid.TryParse(userId, out var userGuid) == false)
+        var userId = args.ReadOrGet("UserId", 1);
+        if (await GetFromStartString(userId, new GetUsersQuery()) is var userResult 
+            && userResult.IsError)
         {
-            Problem([Error.Validation("Guid.Invalid", $"Invalid UserGuid[1]: {userId}")]);
+            Problem(userResult.Errors);
             return;
         }
         
-        var result = await sender.Send(new AssignTaskCommand(taskGuid, userGuid));
+        var result = await sender.Send(new AssignTaskCommand(taskResult.Value.Id, userResult.Value.Id));
         
         result.Switch(r =>
-            Io.WriteTitle($"Task {taskGuid} assigned to {userGuid}"),
+            Io.WriteTitle(taskResult.Value.Title!, "Task assigned to", userResult.Value.Name!),
         Problem);
     }
     
     public async void ChangeCommand(params string[] args)
     {
-        var taskId = args.TryGet("TaskId", 0);
-        if (Guid.TryParse(taskId, out var taskGuid) == false)
+        var taskId = args.ReadOrGet("TaskId", 0);
+        if (await GetFromStartString(taskId, new GetTasksQuery(userContext.User?.Id)) is var taskResult 
+            && taskResult.IsError)
         {
-            Problem([Error.Validation("Guid.Invalid", $"Invalid TaskGuid[0]: {taskId}")]);
+            Problem(taskResult.Errors);
             return;
         }
+
+        var allStatuses = Enum.GetValues<TaskStatus>();
+        var status = args
+            .ReadOrGet("TaskStatus", 1)
+            .TryParseFrom(allStatuses, s => s.ToString());
         
-        var status = args.TryGet("TaskStatus", 1);
-        if (Enum.TryParse<TaskStatus>(status, true, out var taskStatus) == false)
-        {
-            Problem([Error.Validation("TaskStatus.Invalid", $"Invalid TaskStatus[1]: {status}")]);
-            return;
-        }
-        
-        var result = await sender.Send(new ChangeTaskStatusCommand(taskGuid, taskStatus));
+        var result = await sender.Send(new ChangeTaskStatusCommand(taskResult.Value.Id, status));
         
         result.Switch(r =>
-            Io.WriteTitle($"Task {taskId} assigned to {taskStatus}"),
+            Io.WriteTitle(taskResult.Value.Title!, "Task status changed to", status.ToString()),
         Problem);
+    }
+    
+    private async Task<ErrorOr<T>> GetFromStartString<T>(string start, IRequest<ErrorOr<List<T>>> query) 
+        where T : Entity
+    {
+        return (await sender.Send(query)).Match<ErrorOr<T>>(ts =>
+        {
+            if (start.TryParseFrom(ts, t => t.Id.ToString()) is not { } type)
+                return Error.Validation($"{typeof(T).Name}.NotFound", 
+                    $"{typeof(T).Name} with id parse start: {start} not found.");
+            return type;
+        }, e => e);
     }
 }

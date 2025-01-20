@@ -9,7 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6c60448e-fa17-42da-adb6-4ee64d777a8c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/DependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/AuthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/TaskController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/TaskController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Io.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Io.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +46,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.ProjectManagementSystem.External.executor": "Debug",
+    ".NET Project.ProjectManagementSystem.External.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "develop",
     "node.js.detected.package.eslint": "true",
@@ -86,7 +88,7 @@
       <workItem from="1737147098669" duration="23373000" />
       <workItem from="1737208255137" duration="33016000" />
       <workItem from="1737244220215" duration="4063000" />
-      <workItem from="1737306633617" duration="25321000" />
+      <workItem from="1737306633617" duration="36223000" />
     </task>
     <servers />
   </component>

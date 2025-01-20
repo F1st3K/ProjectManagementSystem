@@ -18,7 +18,7 @@ public class AuthController(ISender sender, IUserContext userContext) : BaseComm
         result.Switch(r =>
         {
             userContext.User = r;
-            Io.WriteTitle($"You have logged in as {r.Role} {r.Name}");
+            Io.WriteTitle("Logged in as", r.Role.ToString(), r.Name);
         }, Problem);
     }
 
@@ -36,7 +36,7 @@ public class AuthController(ISender sender, IUserContext userContext) : BaseComm
 
         result.Switch(r =>
         {
-            Io.WriteTitle($"You registered new {UserRole.Employee} {name}");
+            Io.WriteTitle("Registered new", UserRole.Employee.ToString(), name);
         }, Problem);
     }
 }
