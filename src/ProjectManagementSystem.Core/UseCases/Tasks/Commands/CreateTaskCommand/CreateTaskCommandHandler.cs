@@ -11,6 +11,7 @@ namespace ProjectManagementSystem.Core.UseCases.Tasks.Commands.CreateTaskCommand
 public class CreateTaskCommandHandler(
     IUserContext userContext,
     ITaskRepository taskRepository,
+    IUserRepository userRepository,
     IProjectRepository projectRepository)
     : IRequestHandler<CreateTaskCommand, ErrorOr<Created>>
 {
@@ -25,13 +26,18 @@ public class CreateTaskCommandHandler(
         if (projectRepository.GetProject(request.ProjectId) is not { } project)
             return Error.NotFound("Project.NotFound",
                 $"Project with id {request.ProjectId} does not exist.");
+        
+        if (userRepository.GetUser(userContext.User.Id) is not { } user)
+            return Error.Failure("User.InvalidContext",
+                $"Invalid user context because user with id {request.ProjectId} does not exist.");
 
         taskRepository.CreateTask(new ()
         {
             Title = request.Title,
             Description = request.Description,
             Project = project,
-            Status = TaskStatus.ToDo
+            Status = TaskStatus.ToDo,
+            AssignedUser = user
         });
         
         return Result.Created;
