@@ -8,10 +8,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c60448e-fa17-42da-adb6-4ee64d777a8c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Repositories/JsonTaskRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectManagementSystem/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/AuthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/TaskController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Controllers/TaskController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Io.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Io.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/Entities/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.Core/Entities/Entity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/DependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Repositories/ProjectRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Repositories/TaskRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Repositories/JsonUserRepository.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +35,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a936e224b6e41727392c14c158cf46c4bc249963f0fe8e2b5e3eb9af1595b17/StreamReader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e1edd7ab1227f3b37c931a6e73abd1a338084f0d95860e61f5e4afc1ddb0bd/IServiceScope.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/ProjectManagementSystem.External/Repositories/UserRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -46,7 +50,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.ProjectManagementSystem.External.executor": "Run",
+    ".NET Project.ProjectManagementSystem.External.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "develop",
     "node.js.detected.package.eslint": "true",
@@ -88,7 +92,7 @@
       <workItem from="1737147098669" duration="23373000" />
       <workItem from="1737208255137" duration="33016000" />
       <workItem from="1737244220215" duration="4063000" />
-      <workItem from="1737306633617" duration="36223000" />
+      <workItem from="1737306633617" duration="41117000" />
     </task>
     <servers />
   </component>
@@ -98,5 +102,63 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Jfr.cs</url>
+          <line>14</line>
+          <properties documentPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Jfr.cs" containingFunctionPresentation="Method 'LoadData'">
+            <startOffsets>
+              <option value="374" />
+            </startOffsets>
+            <endOffsets>
+              <option value="438" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Jfr.cs</url>
+          <line>15</line>
+          <properties documentPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Jfr.cs" containingFunctionPresentation="Method 'LoadData'">
+            <startOffsets>
+              <option value="451" />
+            </startOffsets>
+            <endOffsets>
+              <option value="467" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Jfr.cs</url>
+          <line>16</line>
+          <properties documentPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Jfr.cs" containingFunctionPresentation="Method 'LoadData'">
+            <startOffsets>
+              <option value="476" />
+            </startOffsets>
+            <endOffsets>
+              <option value="543" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Jfr.cs</url>
+          <line>9</line>
+          <properties documentPath="$PROJECT_DIR$/src/ProjectManagementSystem.External/Extensions/Jfr.cs" containingFunctionPresentation="Method 'SaveData'">
+            <startOffsets>
+              <option value="249" />
+            </startOffsets>
+            <endOffsets>
+              <option value="312" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

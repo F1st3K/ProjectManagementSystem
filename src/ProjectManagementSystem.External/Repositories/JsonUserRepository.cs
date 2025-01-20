@@ -1,26 +1,25 @@
 using ProjectManagementSystem.Core.Entities;
 using ProjectManagementSystem.Core.Repositories;
+using ProjectManagementSystem.External.Extensions;
 
 namespace ProjectManagementSystem.External.Repositories;
 
-public class UserRepository : IUserRepository
+public class JsonUserRepository : IUserRepository
 {
-    private List<User> _users = [
-        new () { Login = "qwerty", HashPassword = "qwertyui", Name = "Alex Ivanov", Role = UserRole.Manager }
-    ];
-    
     public void CreateUser(User user)
     {
-        _users.Add(user);
+        var users = Jfr.LoadData<User>();
+        users.Add(user);
+        users.SaveData();
     }
 
     public IEnumerable<User> GetUsers()
     {
-        return _users;
+        return Jfr.LoadData<User>();
     }
 
     public User? GetUser(Guid userId)
     {
-        return _users.FirstOrDefault(u => u.Id == userId);
+        return Jfr.LoadData<User>().FirstOrDefault(u => u.Id == userId);
     }
 }

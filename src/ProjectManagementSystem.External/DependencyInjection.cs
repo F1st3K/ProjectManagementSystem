@@ -22,9 +22,9 @@ public static class DependencyInjection
     public static IServiceCollection AddExternalInfrastructure(this IServiceCollection services)
     {
         services.AddSingleton<IUserContext, UserContext>();
-        services.AddSingleton<IUserRepository, UserRepository>();
-        services.AddSingleton<IProjectRepository, ProjectRepository>();
-        services.AddSingleton<ITaskRepository, TaskRepository>();
+        services.AddScoped<IUserRepository, JsonUserRepository>();
+        services.AddScoped<IProjectRepository, JsonProjectRepository>();
+        services.AddScoped<ITaskRepository, JsonTaskRepository>();
         
         return services;
     }
